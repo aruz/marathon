@@ -5,6 +5,7 @@ import com.malinskiy.adam.server.junit5.AdbClient
 import com.malinskiy.adam.server.junit5.AdbServer
 import com.malinskiy.adam.server.junit5.AdbTest
 import com.malinskiy.adam.server.stub.AndroidDebugBridgeServer
+import com.malinskiy.marathon.android.RemoteFileManager
 import com.malinskiy.marathon.android.adam.TestConfigurationFactory
 import com.malinskiy.marathon.android.adam.TestDeviceFactory
 import com.malinskiy.marathon.android.adam.boot
@@ -75,8 +76,8 @@ class ScreenRecorderTestRunListenerTest {
                             .respond("x0")
                     }
 
-                    pullFile(temp, "/sdcard/com.example.Class-method1-${batch.id}.mp4")
-                    shell("rm /sdcard/com.example.Class-method1-${batch.id}.mp4", "")
+                    pullFile(temp, "/sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4")
+                    shell("rm /sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4", "")
                 }
                 features("emulator-5554")
             }
@@ -130,8 +131,8 @@ class ScreenRecorderTestRunListenerTest {
                             .respond("x0")
                     }
 
-                    pullFile(temp, "/sdcard/com.example.Class-method1-${batch.id}.mp4")
-                    shell("rm /sdcard/com.example.Class-method1-${batch.id}.mp4", "")
+                    pullFile(temp, "/sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4")
+                    shell("rm /sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4", "")
                 }
                 features("emulator-5554")
             }
@@ -186,8 +187,8 @@ class ScreenRecorderTestRunListenerTest {
                     }
                     shell("ps -A | grep screenrecord", "")
 
-                    pullFile(temp, "/sdcard/com.example.Class-method1-${batch.id}.mp4")
-                    shell("rm /sdcard/com.example.Class-method1-${batch.id}.mp4", "")
+                    pullFile(temp, "/sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4")
+                    shell("rm /sdcard/${RemoteFileManager.MARATHON_FOLDER}/com.example.Class-method1-${batch.id}.mp4", "")
                 }
                 features("emulator-5554")
             }

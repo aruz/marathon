@@ -45,7 +45,7 @@ class RemoteFileManagerTest {
                 serial("emulator-5554") {
                     boot(externalStorage = "/sdcard")
 
-                    shell("mkdir /sdcard", "")
+                    shell("mkdir /sdcard/${RemoteFileManager.MARATHON_FOLDER}", "")
                     shell("mkdir /sdcard/somepath", "")
                 }
                 features("emulator-5554")
@@ -76,7 +76,7 @@ class RemoteFileManagerTest {
                 serial("emulator-5554") {
                     boot(externalStorage = "/sdcard")
 
-                    shell("rm -r /sdcard", "")
+                    shell("rm -r /sdcard/${RemoteFileManager.MARATHON_FOLDER}", "")
                 }
                 features("emulator-5554")
             }
@@ -141,7 +141,7 @@ class RemoteFileManagerTest {
             device.setup()
 
             val actual = manager.remoteVideoForTest(com.malinskiy.marathon.test.Test("pkg", "clazz", "method", emptyList()), "batch-id")
-            assertThat(actual).isEqualTo("/sdcard/pkg.clazz-method-batch-id.mp4")
+            assertThat(actual).isEqualTo("/sdcard/${RemoteFileManager.MARATHON_FOLDER}/pkg.clazz-method-batch-id.mp4")
         }
     }
 
@@ -176,7 +176,7 @@ class RemoteFileManagerTest {
                     emptyList()
                 ), "batch-id"
             )
-            assertThat(actual).isEqualTo("/sdcard/pkg.clazz-testWithAVeryLongNameThatExceeds255CharactersqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERT-batch-id.mp4")
+            assertThat(actual).isEqualTo("/sdcard/${RemoteFileManager.MARATHON_FOLDER}/pkg.clazz-testWithAVeryLongNameThatExceeds255CharactersqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnmQWERT-batch-id.mp4")
         }
     }
 }

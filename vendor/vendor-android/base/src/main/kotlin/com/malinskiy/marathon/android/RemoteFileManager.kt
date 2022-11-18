@@ -7,7 +7,7 @@ import com.malinskiy.marathon.test.toClassName
 
 class RemoteFileManager(private val device: AndroidDevice) {
     private val log = MarathonLogging.logger {}
-    private val outputDir by lazy { device.externalStorageMount }
+    private val outputDir by lazy { "${device.externalStorageMount}/${MARATHON_FOLDER}" }
 
     suspend fun removeRemotePath(remotePath: String, recursive: Boolean = false) {
         val errorMessage = "Could not delete remote file(s): $remotePath"
@@ -46,5 +46,6 @@ class RemoteFileManager(private val device: AndroidDevice) {
     companion object {
         const val MAX_FILENAME = 255
         const val TMP_PATH = "/data/local/tmp"
+        const val MARATHON_FOLDER = ".marathon"
     }
 }
