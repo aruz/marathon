@@ -66,6 +66,10 @@ class AndroidAppInstaller(configuration: Configuration) {
         withRetry(attempts = MAX_RETIRES, delayTime = 1000) {
             try {
                 if (installed(device, appPackage)) {
+                    if (androidConfiguration.disableReinstall) {
+                        logger.info("Already installed $appPackage to ${device.serialNumber}")
+                        return@withRetry
+                    }
                     logger.info("Uninstalling $appPackage from ${device.serialNumber}")
                     val uninstallMessage = device.safeUninstallPackage(appPackage)?.trim()
                     uninstallMessage?.let { logger.debug { it } }

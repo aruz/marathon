@@ -17,6 +17,7 @@ import com.malinskiy.marathon.config.vendor.android.TimeoutConfiguration
 import java.io.File
 
 const val DEFAULT_INIT_TIMEOUT_MILLIS = 30_000
+const val DEFAULT_DISABLE_REINSTALL = false
 const val DEFAULT_AUTO_GRANT_PERMISSION = false
 const val DEFAULT_DISABLE_WINDOW_ANIMATION = true
 const val DEFAULT_APPLICATION_PM_CLEAR = false
@@ -43,6 +44,7 @@ sealed class VendorConfiguration {
         @JsonProperty("testApplicationApk") val testApplicationOutput: File?,
         @JsonProperty("splitApks") val splitApks: List<File>?,
         @JsonProperty("extraApplicationsApk") val extraApplicationsOutput: List<File>?,
+        @JsonProperty("disableReinstall") val disableReinstall: Boolean = DEFAULT_DISABLE_REINSTALL,
         @JsonProperty("outputs") val outputs: List<AndroidTestBundleConfiguration>? = null,
         @JsonProperty("autoGrantPermission") val autoGrantPermission: Boolean = DEFAULT_AUTO_GRANT_PERMISSION,
         @JsonProperty("instrumentationArgs") val instrumentationArgs: Map<String, String> = emptyMap(),
@@ -77,6 +79,7 @@ sealed class VendorConfiguration {
         var testApplicationOutput: File? = null
         var extraApplicationsOutput: List<File>? = null
         var splitApks: List<File>? = null
+        var disableReinstall: Boolean = DEFAULT_DISABLE_REINSTALL
         var outputs: List<AndroidTestBundleConfiguration>? = null
         var autoGrantPermission: Boolean = DEFAULT_AUTO_GRANT_PERMISSION
         var instrumentationArgs: Map<String, String> = emptyMap()
@@ -103,6 +106,7 @@ sealed class VendorConfiguration {
             testApplicationOutput,
             splitApks,
             extraApplicationsOutput,
+            disableReinstall,
             outputs,
             autoGrantPermission,
             instrumentationArgs,
